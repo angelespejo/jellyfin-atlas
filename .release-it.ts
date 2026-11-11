@@ -1,4 +1,4 @@
-import { CHANGELOG_TYPES } from './.dovenv/commits.ts'
+import type { Config } from 'release-it'
 
 /**
  * release-it configuration.
@@ -9,8 +9,8 @@ import { CHANGELOG_TYPES } from './.dovenv/commits.ts'
 export default {
   plugins: {
     '@release-it/bumper': {
-      in: ['.package.json'],
-      out: ['.package.json'],
+      in: ['package.json'],
+      out: ['package.json'],
     },
   },
   git: {
@@ -30,9 +30,9 @@ export default {
   hooks: {
     'before:init': ['pnpm check'],
     'after:bump': 'pnpm auto-changelog -p',
-    'after:git:release': "echo 'After git push, before github release'",
+    // 'after:git:release': "echo 'After git push, before github release'",
     'after:release': [
       'echo "GitHub action is now releasing: ${name} v${version} to ${repo.repository}.\\n Check if all is ok 🌈🤖\\n https://github.com/${repo.repository}/actions"',
     ],
   },
-}
+} satisfies Config
