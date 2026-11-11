@@ -12,7 +12,7 @@ import { join } from 'node:path'
 import { stdin, stdout } from 'node:process'
 import { createInterface } from 'node:readline/promises'
 import type { Interface } from 'node:readline/promises'
-import { COMMIT_TYPES, MAX_SUBJECT, commitMessage } from '../commits.ts'
+import { COMMIT_SCOPES, COMMIT_TYPES, MAX_SUBJECT, commitMessage } from '../commits.ts'
 
 interface Change {
   status: string
@@ -131,8 +131,24 @@ async function askType(rl: Interface): Promise<string> {
 }
 
 async function askScope(rl: Interface): Promise<string> {
-  const answer = (await rl.question('Scope (optional, e.g. map, table): ')).trim()
-  return answer.replace(/^\(|\)$/g, '').replace(/\s+/g, '-')
+  console.log('\nScope:')
+  const width = Math.max(...COMMIT_SCOPES.map((entry) => entry.scope.length))
+  COMMIT_SCOPES.forEach((entry, index) =>
+    console.log(`  ${String(index + 1).padStart(2)}) ${entry.scope.padEnd(width)} ${entry.hint}`)
+  )
+
+  while (true) {
+    const answer = (await rl.question('Scope [1-N or name, Enter = none]: ')).trim().toLowerCase()
+    if (!answer) return ''
+
+    const byName = COMMIT_SCOPES.find((entry) => entry.scope === answer)
+    if (byName) return byName.scope
+
+    const byIndex = COMMIT_SCOPES[Number(answer) - 1]
+    if (/^\d+$/.test(answer) && byIndex) return byIndex.scope
+
+    console.log('✖ Pick a scope from the list.')
+  }
 }
 
 async function askSubject(rl: Interface): Promise<string> {

@@ -7,19 +7,6 @@ import { CHANGELOG_TYPES } from './.dovenv/commits.ts'
  * and are shared with `pnpm push`, so both always agree.
  */
 export default {
-  git: {
-    commit: true,
-    commitMessage: 'chore(release): v${version}',
-    tag: true,
-    push: true,
-  },
-  github: {
-    release: true,
-    releaseName: 'v${version}',
-  },
-  npm: {
-    publish: false,
-  },
   plugins: {
     '@release-it/conventional-changelog': {
       infile: 'CHANGELOG.md',
@@ -30,6 +17,23 @@ export default {
         types: CHANGELOG_TYPES,
       },
     },
+    '@release-it/bumper': {
+      in: ['src/package.json'],
+      out: ['src/package.json'],
+    },
+  },
+  git: {
+    commit: true,
+    commitMessage: ':construction_worker: chore(release): v${version}',
+    tag: true,
+    push: true,
+  },
+  github: {
+    release: true,
+    releaseName: 'v${version}',
+  },
+  npm: {
+    publish: false,
   },
   hooks: {
     'before:init': ['pnpm check'],

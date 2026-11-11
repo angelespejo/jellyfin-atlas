@@ -38,6 +38,23 @@ export const COMMIT_TYPES: readonly CommitType[] = [
   { type: 'style', emoji: '💄', hint: 'formatting', effect: 'hidden' },
 ]
 
+export interface CommitScope {
+  /** Scope written in parentheses: `fix(map): …`. Lowercase, kebab-case. */
+  readonly scope: string
+  /** One-line description shown by the interactive prompt. */
+  readonly hint: string
+}
+
+/** Scopes offered by `pnpm push`; a commit can also have no scope. */
+export const COMMIT_SCOPES: readonly CommitScope[] = [
+  { scope: 'web', hint: 'Web source' },
+  { scope: 'i18n', hint: 'translations (Paraglide)' },
+  { scope: 'mock', hint: 'demo library and mock API' },
+  { scope: 'docker', hint: 'Dockerfile and compose' },
+  { scope: 'release', hint: 'release tooling and changelog' },
+  { scope: 'deps', hint: 'dependencies and lockfile' },
+]
+
 /** Longest subject `pnpm push` accepts; keeps `git log --oneline` readable. */
 export const MAX_SUBJECT = 72
 

@@ -227,7 +227,7 @@ Run `pnpm exec prettier --write <path>` on the files you touch. The repo has som
 
 ### Releasing
 
-Releases are automated with [release-it](https://github.com/release-it/release-it) and [Conventional Commits](https://www.conventionalcommits.org/): write commit messages as `feat:`, `fix:` or `docs:` and the changelog writes itself. `pnpm push` helps with that: it asks which files to add, then the type, scope and description (each type carries an emoji, e.g. `fix(map): 🐛 correct marker size`), then the branch to push to (or skip the push). The list of types and their changelog sections lives in [`.dovenv/commits.ts`](./.dovenv/commits.ts) and is shared by both.
+Releases are automated with [release-it](https://github.com/release-it/release-it) and [Conventional Commits](https://www.conventionalcommits.org/): write commit messages as `feat:`, `fix:` or `docs:` and the changelog writes itself. `pnpm push` helps with that: it asks which files to add, then the type and scope (both picked from the lists in [`.dovenv/commits.ts`](./.dovenv/commits.ts), each type carrying an emoji) and the description, e.g. `fix(map): 🐛 correct marker size`, then the branch to push to (or skip the push). The list of types and their changelog sections lives in [`.dovenv/commits.ts`](./.dovenv/commits.ts) and is shared by both.
 
 ```bash
 pnpm changelog:preview   # print the entry the next release would get
