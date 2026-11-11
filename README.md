@@ -215,13 +215,27 @@ pnpm check           # Svelte/TypeScript diagnostics
 pnpm lint            # oxlint (also: pnpm lint:fix)
 pnpm format          # Prettier (also: pnpm format:check)
 pnpm test:e2e        # Playwright smoke tests against the demo library
+pnpm push            # guided `git add .` + Conventional Commit + `git push`
 pnpm build           # production build
 pnpm start           # run the production build (loads .env)
 pnpm geo:build       # regenerate static/geo/* (needs network)
 pnpm countries:build # regenerate the compact client country index
+pnpm release         # bump version, update CHANGELOG.md, tag and publish
 ```
 
 Run `pnpm exec prettier --write <path>` on the files you touch. The repo has some pre-existing lint and format warnings; just make sure your change adds none.
+
+### Releasing
+
+Releases are automated with [release-it](https://github.com/release-it/release-it) and [Conventional Commits](https://www.conventionalcommits.org/): write commit messages as `feat:`, `fix:` or `docs:` and the changelog writes itself. `pnpm push` helps with that — it asks for the type, scope and description, then stages, commits and pushes. The list of types and their changelog sections lives in [`.dovenv/commits.ts`](./.dovenv/commits.ts) and is shared by both.
+
+```bash
+pnpm changelog:preview   # print the entry the next release would get
+pnpm release:dry         # full dry run, changes nothing
+GITHUB_TOKEN=… pnpm release
+```
+
+`pnpm release` bumps `package.json`, updates [`CHANGELOG.md`](./CHANGELOG.md), commits, tags `vX.Y.Z`, pushes and opens the GitHub release. The tag also triggers the Docker publish workflow. `pnpm check` must pass first.
 
 ### Code guidelines
 

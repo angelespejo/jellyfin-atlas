@@ -1,28 +1,25 @@
 # syntax=docker/dockerfile:1
 
-FROM node:24-alpine AS base
+FROM node:24-alpine AS build
 RUN corepack enable
 WORKDIR /app
 
-# Dependencies (lockfile + workspace settings + local patches).
-FROM base AS deps
+# Manifest, lockfile and the locally patched dependency (referenced by pnpm-workspace.yaml).
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches ./patches
+COPY .dovenv/patches ./.dovenv/patches
 RUN pnpm install --frozen-lockfile
 
-# Production build. Jellyfin credentials are read at runtime, so no .env here.
-FROM deps AS build
+# Credentials are runtime-only, so the build needs no .env.
 COPY . .
 RUN pnpm build
 
-# Runtime: adapter-node output is self-contained; package.json keeps ESM mode.
-FROM base AS runtime
-ENV NODE_ENV=production \
-    PORT=3000
-COPY --from=build /app/package.json ./package.json
+FROM node:24-alpine AS runtime
+ENV NODE_ENV=production PORT=3000
+WORKDIR /app
+COPY --from=build /app/package.json ./
 COPY --from=build /app/build ./build
 USER node
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD wget -qO- "http://127.0.0.1:${PORT:-3000}/api/health" >/dev/null || exit 1
 CMD ["node", "build"]

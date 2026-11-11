@@ -8,6 +8,13 @@ audit:
 minimumReleaseAgeExclude:
   - '@sveltejs/adapter-node@6.0.2'
   - '@sveltejs/kit@3.2.0'
+  - prettier@3.10.0
+  - '@inlang/paraglide-js@3.2.2'
+
+# basic-ftp@5 reaches the tree only through release-it → proxy-agent (never used: no FTP
+# fetches), and 5.x is flagged by GHSA-c475-qrg2-pj4r. Pin the patched line.
+overrides:
+  basic-ftp: ^6.2.6
 
 patchedDependencies:
   deepmerge@4.3.1: .dovenv/patches/deepmerge@4.3.1.patch

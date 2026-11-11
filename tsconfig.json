@@ -1,6 +1,6 @@
 {
   "extends": "$app/tsconfig",
-  "include": ["src", "test", "*", ".dovenv/scripts"],
+  "include": ["src", "test", "*", ".dovenv/scripts", ".dovenv/commits.ts"],
   "exclude": ["src/service-worker"],
   "compilerOptions": {
     "rewriteRelativeImportExtensions": true,
