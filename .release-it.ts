@@ -18,14 +18,15 @@ export default {
       },
     },
     '@release-it/bumper': {
-      in: ['src/package.json'],
-      out: ['src/package.json'],
+      in: ['.package.json'],
+      out: ['.package.json'],
     },
   },
   git: {
     commit: true,
     commitMessage: ':construction_worker: chore(release): v${version}',
     tag: true,
+    tagName: 'v${version}',
     push: true,
   },
   github: {

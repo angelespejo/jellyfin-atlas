@@ -220,7 +220,7 @@ pnpm build           # production build
 pnpm start           # run the production build (loads .env)
 pnpm geo:build       # regenerate static/geo/* (needs network)
 pnpm countries:build # regenerate the compact client country index
-pnpm release         # bump version, update CHANGELOG.md, tag and publish
+pnpm release         # ask patch/minor/major, then release-it: changelog, commit, tag, push
 ```
 
 Run `pnpm exec prettier --write <path>` on the files you touch. The repo has some pre-existing lint and format warnings; just make sure your change adds none.
@@ -235,7 +235,7 @@ pnpm release:dry         # full dry run, changes nothing
 GITHUB_TOKEN=… pnpm release
 ```
 
-`pnpm release` bumps `package.json`, updates [`CHANGELOG.md`](./CHANGELOG.md), commits, tags `vX.Y.Z`, pushes and opens the GitHub release. The tag also triggers the Docker publish workflow. `pnpm check` must pass first.
+`pnpm release` first asks whether to release a patch, minor or major (it shows the resulting version), then runs release-it: updates [`CHANGELOG.md`](./CHANGELOG.md), bumps `package.json`, commits, tags `vX.Y.Z`, pushes and opens the GitHub release. The tag also triggers the Docker publish workflow. Commit everything first (`pnpm push`), because the release needs a clean working tree; `pnpm check` must pass too.
 
 ### Code guidelines
 
