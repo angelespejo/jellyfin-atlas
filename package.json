@@ -50,14 +50,13 @@
     "test:e2e": "playwright test",
     "release": "release-it",
     "release:dry": "release-it --dry-run",
-    "changelog:preview": "release-it --changelog",
     "push": "node .dovenv/scripts/push.ts"
   },
   "devDependencies": {
     "@inlang/paraglide-js": "3.2.2",
     "@playwright/test": "~1.65.0",
     "@release-it/bumper": "~8.0.1",
-    "@release-it/conventional-changelog": "12.0.2",
+    "auto-changelog": "~2.7.0",
     "@sveltejs/adapter-node": "~6.0.2",
     "@sveltejs/kit": "~3.2.0",
     "@types/leaflet": "~1.9.22",

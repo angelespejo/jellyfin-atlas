@@ -8,22 +8,13 @@ import { CHANGELOG_TYPES } from './.dovenv/commits.ts'
  */
 export default {
   plugins: {
-    '@release-it/conventional-changelog': {
-      infile: 'CHANGELOG.md',
-      header:
-        '# Changelog\n\nAll notable changes to JellyFin Atlas are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/). Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).',
-      preset: {
-        name: 'conventionalcommits',
-        types: CHANGELOG_TYPES,
-      },
-    },
     '@release-it/bumper': {
       in: ['.package.json'],
       out: ['.package.json'],
     },
   },
   git: {
-    commit: true,
+    requireBranch: 'main',
     commitMessage: ':construction_worker: chore(release): v${version}',
     tag: true,
     tagName: 'v${version}',
@@ -38,5 +29,10 @@ export default {
   },
   hooks: {
     'before:init': ['pnpm check'],
+    'after:bump': 'pnpm auto-changelog -p',
+    'after:git:release': "echo 'After git push, before github release'",
+    'after:release': [
+      'echo "GitHub action is now releasing: ${name} v${version} to ${repo.repository}.\\n Check if all is ok 🌈🤖\\n https://github.com/${repo.repository}/actions"',
+    ],
   },
 }
