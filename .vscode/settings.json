@@ -36,5 +36,10 @@
   },
   "svelte.plugin.typescript.enable": true,
   "svelte.enable-ts-plugin": true,
-  "svelte.plugin.typescript.diagnostics.enable": true
+  "svelte.plugin.typescript.diagnostics.enable": true,
+
+  "json.schemaDownload.trustedDomains": {
+    "https://models.dev/model-schema.json": true,
+    "https://opencode.ai/config.json": true
+  }
 }

@@ -306,8 +306,8 @@
     <div class="rail-top">
       <div class="rail-brand" aria-hidden="true" data-tooltip>
         <!-- <i class="fas fa-globe"></i> -->
-        <img src="/favicon.ico" alt={APP_DATA.PKG.extra.productName} />
-        <Tooltip label={APP_DATA.PKG.extra.productName} placement="right" />
+        <img src="/favicon.ico" alt={APP_NAME} />
+        <Tooltip label={APP_NAME} placement="right" />
       </div>
       <ActionButton
         icon="search"

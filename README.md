@@ -215,7 +215,7 @@ pnpm check           # Svelte/TypeScript diagnostics
 pnpm lint            # oxlint (also: pnpm lint:fix)
 pnpm format          # Prettier (also: pnpm format:check)
 pnpm test:e2e        # Playwright smoke tests against the demo library
-pnpm push            # guided `git add .` + Conventional Commit + `git push`
+pnpm push            # guided: pick files, write a Conventional Commit, choose the branch to push
 pnpm build           # production build
 pnpm start           # run the production build (loads .env)
 pnpm geo:build       # regenerate static/geo/* (needs network)
@@ -227,7 +227,7 @@ Run `pnpm exec prettier --write <path>` on the files you touch. The repo has som
 
 ### Releasing
 
-Releases are automated with [release-it](https://github.com/release-it/release-it) and [Conventional Commits](https://www.conventionalcommits.org/): write commit messages as `feat:`, `fix:` or `docs:` and the changelog writes itself. `pnpm push` helps with that — it asks for the type, scope and description, then stages, commits and pushes. The list of types and their changelog sections lives in [`.dovenv/commits.ts`](./.dovenv/commits.ts) and is shared by both.
+Releases are automated with [release-it](https://github.com/release-it/release-it) and [Conventional Commits](https://www.conventionalcommits.org/): write commit messages as `feat:`, `fix:` or `docs:` and the changelog writes itself. `pnpm push` helps with that: it asks which files to add, then the type, scope and description (each type carries an emoji, e.g. `fix(map): 🐛 correct marker size`), then the branch to push to (or skip the push). The list of types and their changelog sections lives in [`.dovenv/commits.ts`](./.dovenv/commits.ts) and is shared by both.
 
 ```bash
 pnpm changelog:preview   # print the entry the next release would get

@@ -34,11 +34,6 @@ declare global {
   interface Document {
     startViewTransition(updateCallback: () => Promise<void>): ViewTransition
   }
-
-  ////////////////////////////////////////////////
-  // VARIABLES
-  ////////////////////////////////////////////////
-  declare const APP_DATA: typeof import('../vite.config').APP_DATA
 }
 
 export {}

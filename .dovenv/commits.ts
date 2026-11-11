@@ -7,8 +7,10 @@
  */
 
 export interface CommitType {
-  /** Type used in the subject: `feat(map): add marker`. */
+  /** Type used in the subject: `feat(map): ✨ add marker`. */
   readonly type: string
+  /** Emoji placed before the description in the subject. */
+  readonly emoji: string
   /** One-line description shown by the interactive prompt. */
   readonly hint: string
   /** Changelog section; omitted when the type never reaches `CHANGELOG.md`. */
@@ -18,16 +20,22 @@ export interface CommitType {
 }
 
 export const COMMIT_TYPES: readonly CommitType[] = [
-  { type: 'feat', hint: 'new feature', section: 'Features', effect: 'bump' },
-  { type: 'fix', hint: 'bug fix', section: 'Bug Fixes', effect: 'bump' },
-  { type: 'docs', hint: 'docs only', section: 'Documentation', effect: 'changelog' },
-  { type: 'refactor', hint: 'no behaviour change', effect: 'hidden' },
-  { type: 'perf', hint: 'performance', section: 'Performance', effect: 'bump' },
-  { type: 'test', hint: 'tests', effect: 'hidden' },
-  { type: 'build', hint: 'build or deps', effect: 'hidden' },
-  { type: 'ci', hint: 'CI config', effect: 'hidden' },
-  { type: 'chore', hint: 'maintenance', effect: 'hidden' },
-  { type: 'style', hint: 'formatting', effect: 'hidden' },
+  { type: 'feat', emoji: '✨', hint: 'new feature', section: 'Features', effect: 'bump' },
+  { type: 'fix', emoji: '🐛', hint: 'bug fix', section: 'Bug Fixes', effect: 'bump' },
+  {
+    type: 'docs',
+    emoji: '📝',
+    hint: 'docs only',
+    section: 'Documentation',
+    effect: 'changelog',
+  },
+  { type: 'refactor', emoji: '♻️', hint: 'no behaviour change', effect: 'hidden' },
+  { type: 'perf', emoji: '⚡️', hint: 'performance', section: 'Performance', effect: 'bump' },
+  { type: 'test', emoji: '✅', hint: 'tests', effect: 'hidden' },
+  { type: 'build', emoji: '📦️', hint: 'build or deps', effect: 'hidden' },
+  { type: 'ci', emoji: '👷', hint: 'CI config', effect: 'hidden' },
+  { type: 'chore', emoji: '🔧', hint: 'maintenance', effect: 'hidden' },
+  { type: 'style', emoji: '💄', hint: 'formatting', effect: 'hidden' },
 ]
 
 /** Longest subject `pnpm push` accepts; keeps `git log --oneline` readable. */
@@ -40,7 +48,8 @@ export const CHANGELOG_TYPES = COMMIT_TYPES.map(({ type, section, effect }) => (
   ...(effect && effect !== 'bump' ? { effect } : {}),
 }))
 
-/** Builds `feat(map): add marker` from its three parts. */
+/** Builds `feat(map): ✨ add marker` from its parts. */
 export function commitMessage(type: string, scope: string, subject: string): string {
-  return `${type}${scope ? `(${scope})` : ''}: ${subject}`
+  const emoji = COMMIT_TYPES.find((entry) => entry.type === type)?.emoji ?? ''
+  return `${type}${scope ? `(${scope})` : ''}: ${emoji} ${subject}`
 }

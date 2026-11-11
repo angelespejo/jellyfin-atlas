@@ -53,7 +53,7 @@ function fundingList(value: PackageLike['funding']): string[] {
  * Values are never duplicated in the UI: only translated labels live in i18n.
  */
 export function getProjectInfo(): ProjectInfo {
-  const pkg = DATA.PKG as unknown as PackageLike
+  const pkg = DATA
   const author =
     typeof pkg.author === 'string'
       ? { name: pkg.author }
