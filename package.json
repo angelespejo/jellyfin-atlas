@@ -1,0 +1,92 @@
+{
+  "name": "jellyfin-atlas",
+  "description": "Visually explore your Jellyfin media library on an interactive map. Each circle represents a production country and its size the amount of media.",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "author": {
+    "name": "Angelo",
+    "email": "angelo@pigeonposse.com",
+    "url": "https://github.com/angelespejo"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.18.0",
+      "onFail": "download"
+    }
+  },
+  "imports": {
+    "#lib": "./src/lib/index.ts",
+    "#lib/*": "./src/lib/*",
+    "#const": "./src/const/index.ts",
+    "#core": "./src/core/index.svelte.ts",
+    "#locales/*": "./src/locales/*",
+    "#api/*": "./src/routes/api/*",
+    "#i18n/*": "./.dovenv/i18n/*"
+  },
+  "scripts": {
+    "preinstall": "pnpm run security:audit",
+    "dev": "vite dev --port 5143 --mode mock",
+    "dev-remote": "vite dev --port 5143",
+    "build": "vite build",
+    "start": "node --env-file-if-exists=.env build",
+    "preview": "vite preview --port 3000",
+    "sync": "svelte-kit sync",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "geo:build": "node .dovenv/scripts/build-geo-data.ts",
+    "countries:build": "node .dovenv/scripts/build-country-index.ts",
+    "mock:build": "node .dovenv/scripts/build-mock-library.ts",
+    "security:audit": "pnpm audit --audit-level=low",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@inlang/paraglide-js": "3.2.1",
+    "@playwright/test": "~1.65.0",
+    "@sveltejs/adapter-node": "~6.0.2",
+    "@sveltejs/kit": "~3.2.0",
+    "@types/leaflet": "~1.9.22",
+    "@types/node": "~26.6.6",
+    "oxlint": "~1.93.0",
+    "prettier": "~3.9.6",
+    "prettier-plugin-svelte": "~4.1.1",
+    "svelte": "~5.57.3",
+    "svelte-check": "~4.7.8",
+    "svelte-ripple-action": "2.0.0",
+    "typescript": "6.0.3",
+    "vite": "~8.3.7",
+    "world-countries": "5.1.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "7.3.1",
+    "echarts": "6.1.0",
+    "jspdf": "4.2.1",
+    "jspdf-autotable": "5.0.9",
+    "leaflet": "~1.9.4"
+  },
+  "extra": {
+    "productName": "JellyFin Atlas"
+  },
+  "homepage": "https://github.com/angelespejo/jellyfin-atlas",
+  "bugs": {
+    "url": "https://github.com/angelespejo/jellyfin-atlas/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angelespejo/jellyfin-atlas"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/angelespejo"
+  },
+  "license": "GPL-3.0"
+}

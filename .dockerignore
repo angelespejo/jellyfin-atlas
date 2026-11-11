@@ -1,0 +1,17 @@
+node_modules
+.svelte-kit
+build
+.git
+.gitignore
+.DS_Store
+.vscode
+.opencode
+.env
+.env.*
+!.env.example
+*.md
+.dovenv/i18n
+.dovenv/mock
+test-results
+playwright-report
+blob-report

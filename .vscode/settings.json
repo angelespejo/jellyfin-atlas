@@ -1,0 +1,40 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[svelte]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.configPath": ".prettierrc",
+  "prettier.useEditorConfig": true,
+  "prettier.requireConfig": false,
+
+  "js/ts.validate.enabled": true,
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+
+  "svelte.plugin.svelte.compilerWarnings": {
+    "a11y-missing-attribute": "ignore"
+  },
+  "svelte.plugin.typescript.enable": true,
+  "svelte.enable-ts-plugin": true,
+  "svelte.plugin.typescript.diagnostics.enable": true
+}

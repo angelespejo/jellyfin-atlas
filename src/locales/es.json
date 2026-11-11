@@ -1,0 +1,297 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "a11y": {
+    "skip": "Saltar al contenido",
+    "main": "Contenido principal",
+    "actions": "Acciones principales"
+  },
+  "search": {
+    "placeholder": "Buscar contenido..."
+  },
+  "stats": {
+    "movies": "películas",
+    "series": "series",
+    "countries": "países"
+  },
+  "type": {
+    "movie": "Película",
+    "series": "Serie",
+    "person": "Persona",
+    "other": "Otro"
+  },
+  "country": {
+    "historical": "País histórico",
+    "capital": "Capital",
+    "population": "Población",
+    "area": "Superficie",
+    "languages": "Idiomas",
+    "currency": "Moneda",
+    "continent": "Continente",
+    "iso": "ISO",
+    "period": "Periodo",
+    "present": "presente",
+    "filter": "Filtrar por este país",
+    "unknown": "Sin ubicación",
+    "openDialog": "Mostrar más detalles",
+    "coatOfArms": "Escudo",
+    "searchTitles": "Buscar títulos...",
+    "noTitles": "Ningún título coincide con la búsqueda.",
+    "noFilteredTitles": "Ningún título coincide con los filtros actuales.",
+    "wikipedia": "Wikipedia",
+    "loading": "Cargando datos del país...",
+    "error": "No se pudieron cargar los datos del país.",
+    "data": "Datos del país"
+  },
+  "filter": {
+    "settings": "Ajustes de filtro",
+    "title": "Filtros",
+    "countries": "Países",
+    "directors": "Directores",
+    "yearRange": "Rango de años",
+    "fromYear": "Desde el año",
+    "toYear": "Hasta el año",
+    "search": "Buscar filtro...",
+    "clearAll": "Borrar todos los filtros",
+    "remove": "Eliminar filtro",
+    "open": "Filtros",
+    "done": "Listo",
+    "none": "Sin filtros activos",
+    "noResults": "Sin resultados",
+    "year": "{n} año",
+    "years": "{n} años",
+    "type": "Tipo",
+    "status": "Estado",
+    "all": "Todos",
+    "played": "Reproducido",
+    "unplayed": "No reproducido",
+    "favorite": "Favorito",
+    "continueWatching": "Seguir viendo",
+    "active": "{n} filtro activo",
+    "active_plural": "{n} filtros activos",
+    "playedState": "Estado de reproducción",
+    "searchCountries": "Buscar países...",
+    "searchDirectors": "Buscar directores...",
+    "results": "Resultados",
+    "showResults": "Ver {n} resultados",
+    "showResult": "Ver {n} resultado"
+  },
+  "error": {
+    "title": "Error de conexión",
+    "message": "No se pudieron cargar las películas. Asegúrate de que el servidor Jellyfin esté en ejecución.",
+    "retry": "Reintentar"
+  },
+  "empty": {
+    "message": "No se encontraron películas"
+  },
+  "sidebar": {
+    "search": "Buscar",
+    "close": "Cerrar",
+    "open": "Abrir menú"
+  },
+  "detail": {
+    "aria": "Detalles del contenido",
+    "close": "Cerrar",
+    "loading": "Cargando detalles...",
+    "direction": "Dirección",
+    "cast": "Reparto",
+    "countries": "Países de producción",
+    "filterDirector": "Filtrar por director",
+    "filterCountry": "Filtrar por país",
+    "genres": "Géneros",
+    "links": "Enlaces",
+    "wikipedia": "Wikipedia",
+    "imdb": "IMDb",
+    "tmdb": "TMDB",
+    "jellyfin": "Jellyfin",
+    "watch": "Ver en Jellyfin",
+    "synopsis": "Sinopsis",
+    "ratingLink": "Ver valoraciones en IMDb",
+    "criticLink": "Ver valoración de la crítica en Rotten Tomatoes"
+  },
+  "map": {
+    "movie": "película",
+    "movies": "películas",
+    "series": "series",
+    "filterByCountry": "Filtrar por este país",
+    "moviesInCountry": "Películas en este país",
+    "countryNote": "Solo se indica el país de producción; no hay ubicaciones exactas de rodaje.",
+    "unknownNote": "No se indica el país de producción de este contenido.",
+    "cityNote": "Lugar de rodaje según Wikidata; la cobertura es parcial.",
+    "moreMovies": "y {n} más",
+    "info": {
+      "title": "Sobre el mapa",
+      "countries": "Cada círculo es un país de producción; el número y el tamaño indican cuántos títulos tiene.",
+      "borders": "Los contornos continuos son fronteras actuales; los discontinuos son fronteras históricas aproximadas.",
+      "cities": "Los puntos pequeños son lugares de rodaje de Wikidata y solo aparecen en algunos títulos."
+    }
+  },
+  "view": {
+    "label": "Vista",
+    "map": "Mapa",
+    "chart": "Gráfico",
+    "graph": "Grafo",
+    "table": "Tabla"
+  },
+  "chart": {
+    "title": "Títulos por país",
+    "subtitle": "{countries} países · {titles} títulos",
+    "empty": "Ningún país coincide con los filtros actuales.",
+    "openCountry": "Mostrar más detalles de {country}",
+    "tab": {
+      "bars": "Barras",
+      "timeline": "Cronología"
+    }
+  },
+  "graph": {
+    "title": "Países y títulos",
+    "subtitle": "{countries} países · {titles} títulos",
+    "legend": "Países = color · Puntos = títulos · Rueda = zoom · Arrastra = mover",
+    "empty": "Ningún país coincide con los filtros actuales.",
+    "openCountry": "Mostrar más detalles de {country}",
+    "titleOne": "título",
+    "titles": "títulos",
+    "linkOne": "conexión",
+    "links": "conexiones",
+    "openTitle": "Abrir {title}",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "reset": "Restablecer vista",
+    "category": {
+      "countries": "Países",
+      "movies": "Películas",
+      "series": "Series"
+    },
+    "calculating": "Calculando grafo...",
+    "saveImage": "Guardar imagen",
+    "toggleLabels": "Mostrar/ocultar títulos"
+  },
+  "settings": {
+    "label": "Ajustes",
+    "actions": "Acciones",
+    "resetView": "Restablecer vista",
+    "reload": "Recargar datos",
+    "clearCache": "Borrar caché",
+    "about": "Acerca de",
+    "version": "Versión",
+    "server": "Servidor",
+    "media": "Contenido",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themeSystem": "Sistema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "cities": "Ciudades",
+    "citiesShow": "Mostrar ciudades de rodaje",
+    "citiesHide": "Ocultar ciudades de rodaje",
+    "citiesHint": "Lugares de rodaje de Wikidata. Aparecen al acercar el mapa o filtrar por país; la cobertura es parcial.",
+    "lang": {
+      "auto": "Automático",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "toast": {
+    "moviesLoaded": "Películas cargadas con éxito",
+    "moviesError": "Error al cargar las películas",
+    "detailsError": "Error al cargar los detalles",
+    "cacheCleared": "Caché borrada"
+  },
+  "about": {
+    "data": "Datos del mapa",
+    "shortcuts": "Atajos de teclado",
+    "commands": {
+      "navigation": "Navegación",
+      "views": "Vistas",
+      "actions": "Acciones",
+      "search": "Buscar en la biblioteca",
+      "filters": "Abrir el panel de filtros",
+      "close": "Cerrar el diálogo o panel abierto",
+      "cities": "Mostrar u ocultar ciudades de rodaje",
+      "hint": "Los atajos se ignoran mientras escribes en un campo."
+    },
+    "source": {
+      "osm": "OpenStreetMap (mapa base)",
+      "naturalEarth": "Natural Earth (fronteras actuales)",
+      "historical": "historical-basemaps (fronteras históricas)",
+      "wikidata": "Wikidata (lugares de rodaje)",
+      "wikipedia": "Wikipedia (datos de países)"
+    },
+    "demo": {
+      "badge": "Datos de demo",
+      "hint": "Esta biblioteca es una muestra incluida en la app, no un servidor Jellyfin real.",
+      "server": "Biblioteca de demo"
+    }
+  },
+  "info": {
+    "title": "Acerca de",
+    "version": "Versión",
+    "server": "Servidor",
+    "media": "Contenido",
+    "description": "Explora visualmente tu biblioteca de Jellyfin en un mapa interactivo. Cada círculo representa un país de producción y su tamaño la cantidad de contenido.",
+    "author": "Autor",
+    "funding": "Patrocinar",
+    "homepage": "Sitio web",
+    "issues": "Incidencias",
+    "repository": "Repositorio",
+    "instance": "Instancia",
+    "website": "Perfil"
+  },
+  "timeline": {
+    "title": "Títulos por año",
+    "subtitle": "Evolución de la colección por año de producción.",
+    "movies": "Películas",
+    "series": "Series",
+    "empty": "Ningún título con año de producción coincide con los filtros actuales.",
+    "loading": "Cargando gráfico...",
+    "countries": "Países"
+  },
+  "table": {
+    "title": "Tabla de la biblioteca",
+    "subtitle": "{filtered} de {total} títulos",
+    "range": "{from}–{to} de {total}",
+    "empty": "Ningún título coincide con los filtros actuales.",
+    "page": "Página {page} de {pages}",
+    "previous": "Página anterior",
+    "next": "Página siguiente",
+    "columns": {
+      "title": "Título",
+      "year": "Año",
+      "type": "Tipo",
+      "countries": "Países",
+      "rating": "Nota",
+      "runtime": "Duración",
+      "status": "Estado",
+      "button": "Columnas",
+      "genres": "Géneros",
+      "officialRating": "Clasificación",
+      "premiereDate": "Estreno"
+    },
+    "download": "Descargar",
+    "exporting": "Generando...",
+    "loadMore": "Desplázate para cargar más",
+    "status": {
+      "played": "Reproducido",
+      "favorite": "Favorito",
+      "continue": "Seguir viendo"
+    }
+  },
+  "person": {
+    "open": "Abrir {name}",
+    "filter": "Filtrar por esta persona",
+    "details": "Mostrar más detalles",
+    "credits": "Filmografía",
+    "loading": "Cargando créditos...",
+    "noCredits": "No se han encontrado títulos en esta biblioteca.",
+    "biography": "Biografía",
+    "links": "Enlaces",
+    "searchCredits": "Buscar en la filmografía...",
+    "noMatches": "Ningún título coincide con la búsqueda.",
+    "results": "{shown} de {total} títulos"
+  },
+  "meta": {
+    "map": "Mapa de países",
+    "chart": "Gráficos",
+    "graph": "Grafo de países y títulos",
+    "table": "Tabla de la biblioteca"
+  }
+}

@@ -1,0 +1,13 @@
+allowBuilds:
+  esbuild: true
+  core-js: false
+audit:
+  level: low
+  ignore:
+    - GHSA-gcqx-w48m-w2h4
+minimumReleaseAgeExclude:
+  - '@sveltejs/adapter-node@6.0.2'
+  - '@sveltejs/kit@3.2.0'
+
+patchedDependencies:
+  deepmerge@4.3.1: .dovenv/patches/deepmerge@4.3.1.patch

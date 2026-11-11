@@ -1,0 +1,297 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "a11y": {
+    "skip": "Skip to content",
+    "main": "Main content",
+    "actions": "Main actions"
+  },
+  "search": {
+    "placeholder": "Search media..."
+  },
+  "stats": {
+    "movies": "movies",
+    "series": "series",
+    "countries": "countries"
+  },
+  "type": {
+    "movie": "Movie",
+    "series": "Series",
+    "person": "Person",
+    "other": "Other"
+  },
+  "country": {
+    "historical": "Historical country",
+    "capital": "Capital",
+    "population": "Population",
+    "area": "Area",
+    "languages": "Languages",
+    "currency": "Currency",
+    "continent": "Continent",
+    "iso": "ISO",
+    "period": "Period",
+    "present": "present",
+    "filter": "Filter by this country",
+    "unknown": "No location",
+    "openDialog": "Show more details",
+    "coatOfArms": "Coat of arms",
+    "searchTitles": "Search titles...",
+    "noTitles": "No titles match your search.",
+    "noFilteredTitles": "No titles match the current filters.",
+    "wikipedia": "Wikipedia",
+    "loading": "Loading country data...",
+    "error": "Could not load country data.",
+    "data": "Country data"
+  },
+  "filter": {
+    "settings": "Filter settings",
+    "title": "Filters",
+    "countries": "Countries",
+    "directors": "Directors",
+    "yearRange": "Year range",
+    "fromYear": "From year",
+    "toYear": "To year",
+    "search": "Search filter...",
+    "clearAll": "Clear all filters",
+    "remove": "Remove filter",
+    "open": "Filters",
+    "done": "Done",
+    "none": "No active filters",
+    "noResults": "No results",
+    "year": "{n} year",
+    "years": "{n} years",
+    "type": "Type",
+    "status": "Status",
+    "all": "All",
+    "played": "Watched",
+    "unplayed": "Unwatched",
+    "favorite": "Favorite",
+    "continueWatching": "Continue watching",
+    "active": "{n} active filter",
+    "active_plural": "{n} active filters",
+    "playedState": "Playback status",
+    "searchCountries": "Search countries...",
+    "searchDirectors": "Search directors...",
+    "results": "Results",
+    "showResults": "Show {n} results",
+    "showResult": "Show {n} result"
+  },
+  "error": {
+    "title": "Connection error",
+    "message": "Could not load movies. Make sure the Jellyfin server is running.",
+    "retry": "Retry"
+  },
+  "empty": {
+    "message": "No movies found"
+  },
+  "sidebar": {
+    "search": "Search",
+    "close": "Close",
+    "open": "Open menu"
+  },
+  "detail": {
+    "aria": "Media details",
+    "close": "Close",
+    "loading": "Loading details...",
+    "direction": "Direction",
+    "cast": "Cast",
+    "countries": "Production countries",
+    "filterDirector": "Filter by director",
+    "filterCountry": "Filter by country",
+    "genres": "Genres",
+    "links": "Links",
+    "wikipedia": "Wikipedia",
+    "imdb": "IMDb",
+    "tmdb": "TMDB",
+    "jellyfin": "Jellyfin",
+    "watch": "Watch in Jellyfin",
+    "synopsis": "Synopsis",
+    "ratingLink": "View ratings on IMDb",
+    "criticLink": "View critics rating on Rotten Tomatoes"
+  },
+  "map": {
+    "movie": "movie",
+    "movies": "movies",
+    "series": "series",
+    "filterByCountry": "Filter by this country",
+    "moviesInCountry": "Movies in this country",
+    "countryNote": "Production country only; exact filming locations aren't available.",
+    "unknownNote": "No production country is listed for this media.",
+    "cityNote": "Filming location from Wikidata; coverage is partial.",
+    "moreMovies": "and {n} more",
+    "info": {
+      "title": "About the map",
+      "countries": "Each circle is a production country; the number and size show how many titles it has.",
+      "borders": "Solid outlines are current country borders; dashed outlines are approximate historical borders.",
+      "cities": "Small dots are filming locations from Wikidata and only appear for some titles."
+    }
+  },
+  "view": {
+    "label": "View",
+    "map": "Map",
+    "chart": "Chart",
+    "graph": "Graph",
+    "table": "Table"
+  },
+  "chart": {
+    "title": "Titles by country",
+    "subtitle": "{countries} countries · {titles} titles",
+    "empty": "No countries match the current filters.",
+    "openCountry": "Show more details for {country}",
+    "tab": {
+      "bars": "Bars",
+      "timeline": "Timeline"
+    }
+  },
+  "graph": {
+    "title": "Countries and titles",
+    "subtitle": "{countries} countries · {titles} titles",
+    "legend": "Countries = color · Dots = titles · Wheel = zoom · Drag = pan",
+    "empty": "No countries match the current filters.",
+    "openCountry": "Show more details for {country}",
+    "titleOne": "title",
+    "titles": "titles",
+    "linkOne": "link",
+    "links": "links",
+    "openTitle": "Open {title}",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Reset view",
+    "category": {
+      "countries": "Countries",
+      "movies": "Movies",
+      "series": "Series"
+    },
+    "calculating": "Building graph...",
+    "saveImage": "Save image",
+    "toggleLabels": "Show/hide title labels"
+  },
+  "settings": {
+    "label": "Settings",
+    "actions": "Actions",
+    "resetView": "Reset view",
+    "reload": "Reload data",
+    "clearCache": "Clear cache",
+    "about": "About",
+    "version": "Version",
+    "server": "Server",
+    "media": "Media",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "cities": "Cities",
+    "citiesShow": "Show filming cities",
+    "citiesHide": "Hide filming cities",
+    "citiesHint": "Filming locations from Wikidata. They appear when you zoom in or filter by country; coverage is partial.",
+    "lang": {
+      "auto": "Automatic",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "toast": {
+    "moviesLoaded": "Movies loaded successfully",
+    "moviesError": "Error loading movies",
+    "detailsError": "Error loading details",
+    "cacheCleared": "Cache cleared"
+  },
+  "about": {
+    "data": "Map data",
+    "shortcuts": "Keyboard shortcuts",
+    "commands": {
+      "navigation": "Navigation",
+      "views": "Views",
+      "actions": "Actions",
+      "search": "Search the library",
+      "filters": "Open the filters panel",
+      "close": "Close the open dialog or panel",
+      "cities": "Show or hide filming cities",
+      "hint": "Shortcuts are ignored while you are typing in a field."
+    },
+    "source": {
+      "osm": "OpenStreetMap (base map)",
+      "naturalEarth": "Natural Earth (country borders)",
+      "historical": "historical-basemaps (historical borders)",
+      "wikidata": "Wikidata (filming locations)",
+      "wikipedia": "Wikipedia (country details)"
+    },
+    "demo": {
+      "badge": "Demo data",
+      "hint": "This library is a bundled sample snapshot, not a live Jellyfin server.",
+      "server": "Demo library"
+    }
+  },
+  "info": {
+    "title": "About",
+    "version": "Version",
+    "server": "Server",
+    "media": "Media",
+    "description": "Visually explore your Jellyfin media library on an interactive map. Each circle represents a production country and its size the amount of media.",
+    "author": "Author",
+    "funding": "Sponsor",
+    "homepage": "Website",
+    "issues": "Issues",
+    "repository": "Repository",
+    "instance": "Instance",
+    "website": "Profile"
+  },
+  "timeline": {
+    "title": "Titles by year",
+    "subtitle": "Collection evolution by production year.",
+    "movies": "Movies",
+    "series": "Series",
+    "empty": "No titles with a production year match the current filters.",
+    "loading": "Loading chart...",
+    "countries": "Countries"
+  },
+  "table": {
+    "title": "Library table",
+    "subtitle": "{filtered} of {total} titles",
+    "range": "{from}–{to} of {total}",
+    "empty": "No titles match the current filters.",
+    "page": "Page {page} of {pages}",
+    "previous": "Previous page",
+    "next": "Next page",
+    "columns": {
+      "title": "Title",
+      "year": "Year",
+      "type": "Type",
+      "countries": "Countries",
+      "rating": "Rating",
+      "runtime": "Runtime",
+      "status": "Status",
+      "button": "Columns",
+      "genres": "Genres",
+      "officialRating": "Rated",
+      "premiereDate": "Release date"
+    },
+    "download": "Download",
+    "exporting": "Generating...",
+    "loadMore": "Scroll to load more",
+    "status": {
+      "played": "Watched",
+      "favorite": "Favorite",
+      "continue": "Continue watching"
+    }
+  },
+  "person": {
+    "open": "Open {name}",
+    "filter": "Filter by this person",
+    "details": "Show more details",
+    "credits": "Filmography",
+    "loading": "Loading credits...",
+    "noCredits": "No titles found in this library.",
+    "biography": "Biography",
+    "links": "Links",
+    "searchCredits": "Search filmography...",
+    "noMatches": "No titles match your search.",
+    "results": "{shown} of {total} titles"
+  },
+  "meta": {
+    "map": "Country map",
+    "chart": "Charts",
+    "graph": "Countries and titles graph",
+    "table": "Library table"
+  }
+}
