@@ -8,62 +8,49 @@
 
 ![Banner](./.dovenv/media/screenshots-banner.png)
 
-**JellyFin Atlas** is a small companion app for Jellyfin. It reads your library metadata and turns it into visual views: where your movies and series were produced, how the collection grew over time, how countries and titles relate, and a searchable table with exports.
-It only reads from Jellyfin, it never changes your library.
+JellyFin Atlas is a companion app for Jellyfin. It reads your library metadata and shows it from four angles: where your titles were produced, how the collection grew over time, how countries and titles connect, and a sortable table with exports.
 
-- Works with a single Jellyfin server.
-- Runs alongside Jellyfin; you don't need Docker, just Node.js.
-- Interface available in **English** and **Spanish**, light and dark themes.
-- No analytics, no accounts: nothing leaves your network except the public Wikidata/Wikipedia lookups and the OpenStreetMap map tiles the app displays.
-- You can try it with **no Jellyfin server at all**: `pnpm dev` starts with a bundled demo library.
+It only **reads** from Jellyfin. it never modifies your library.
 
-## Index
+- One Jellyfin server per instance.
+- Runs next to Jellyfin with just Node.js, or as a Docker container.
+- English and Spanish interface.
+- light and dark themes.
+- No accounts, no analytics. Nothing leaves your network except public Wikidata/Wikipedia lookups and the map tiles.
+- Try it **without a Jellyfin server**: `pnpm dev` starts with a demo library.
 
-- [What you can do](#what-you-can-do)
+## Contents
+
+- [Features](#features)
 - [Screenshots](#screenshots)
 - [Quick start](#quick-start)
-  - [Requirements](#requirements)
-  - [1. Create a Jellyfin API key](#1-create-a-jellyfin-api-key)
-  - [2. Configure JellyFin Atlas](#2-configure-jellyfin-atlas)
-  - [3. Run it](#3-run-it)
-  - [Install with Docker](#install-with-docker)
 - [Configuration](#configuration)
 - [Using the app](#using-the-app)
-  - [Views](#views)
-  - [Search and filters](#search-and-filters)
-  - [Keyboard shortcuts](#keyboard-shortcuts)
-  - [Language and theme](#language-and-theme)
 - [Development](#development)
-  - [Demo library](#demo-library)
-  - [Commands](#commands)
-  - [Code guidelines](#code-guidelines)
 - [Data sources](#data-sources)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
-- [Support the project](#support-the-project)
 - [License](#license)
 
-## What you can do
+## Features
 
-- **Map**: one marker per production country, sized by how many titles it has.
-  Current and historical borders, plus filming-city dots when Wikidata knows them. Click a marker to see the country and its titles.
+- **Map** — one marker per production country, sized by title count, with current and historical borders and filming-city dots from Wikidata. Click a marker to see the country and its titles.
   ![map](./.dovenv/media/screenshots-map.png)
-
-- **Charts**: horizontal bars for every country, and a timeline of production years. Click a bar or a year to filter the whole app.
+- **Charts** — horizontal bars per country and a timeline by production year. Click a bar or a year to filter the whole app.
   ![chart](./.dovenv/media/screenshots-chart.png)
-- **Graph**: an interactive network of countries and their titles. Zoom, pan and drag nodes; click a country to open its panel or a dot to open a title.
+- **Graph** — an interactive network of countries and titles. Zoom, pan and drag nodes; click a country or a title to open it.
   ![graph](./.dovenv/media/screenshots-graph.png)
-- **Table**: every title with poster, flags, year, rating, runtime and watch state. Sort it, choose the visible columns, scroll to load more, and export exactly what you see to **CSV, JSON or PDF**.
+- **Table** — every title with poster, flags, year, rating, runtime and watch state. Sort it, pick the visible columns, and export what you see to **CSV, JSON or PDF**.
   ![table](./.dovenv/media/screenshots-table.png)
-- **Filters**: search plus year range, movie/series type, watched/unwatched, favorites, continue watching, countries and directors. Everything combines, and the current view is saved in the URL, so a filtered view can be shared or bookmarked.
-  ![search](./.dovenv/media/screenshots-search.png)
-- **Details**: each title opens a dialog with synopsis, cast, directors, genres, ratings and links to Jellyfin, IMDb, TMDB and Wikipedia. People chips open their own dialog with a filmography and a search box.
+- **Filters** — search plus year, type, watch state, favorites, continue watching, countries and directors. All of it combines, and the state lives in the URL, so any view can be bookmarked or shared.
+  ![filters](./.dovenv/media/screenshots-search.png)
+- **Details** — synopsis, cast, directors, genres, ratings and links to Jellyfin, IMDb, TMDB and Wikipedia. Person chips open their own dialog with a filmography.
   ![details](./.dovenv/media/screenshots-view-detail.png)
-- **Country panel**: flag, coat of arms and compact facts from Wikidata, with a Wikipedia link and the titles produced there, already narrowed by your active filters. Its title list has its own search box.
+- **Country panel** — flag, coat of arms and facts from Wikidata, plus the titles produced there.
 
 ## Screenshots
 
-Taken with the bundled demo library, dark theme, Spanish interface.
+Taken with the demo library, dark theme and Spanish interface.
 
 | Map                                                                                                                                                             | Chart                                                                                                                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -75,57 +62,51 @@ Taken with the bundled demo library, dark theme, Spanish interface.
 
 ## Quick start
 
-### Requirements
-
-- A running **Jellyfin** server with your library already scanned.
-- **Node.js 22 or newer** and **pnpm** (the version is pinned in `package.json`; `corepack enable` is the easiest way to get it).
-- If someone else administers your Jellyfin server, ask them for its URL and for an API key; you don't need their password.
-
-> **Only want to try it?**
-> Skip the Jellyfin steps and run `pnpm install` + `pnpm dev`.
-> The app starts with a demo library on <http://localhost:5143> and never contacts a real Jellyfin server.
-
-### 1. Create a Jellyfin API key
-
-1. Open Jellyfin and go to **Dashboard → Administration → API Keys**
-   (Administration may be under **Advanced** in older versions).
-2. Click **+**, name it `JellyFin Atlas` and save.
-3. Copy the generated key — you will paste it in the next step.
-
-### 2. Configure JellyFin Atlas
+### 1. Try the demo (no Jellyfin needed)
 
 ```bash
 git clone https://github.com/angelespejo/jellyfin-atlas.git
 cd jellyfin-atlas
 pnpm install
-cp .env.example .env
+pnpm dev
 ```
 
-Open `.env` and set at least `JELLYFIN_URL` and `JELLYFIN_API_KEY`. The sample file documents every variable.
+Open <http://localhost:5143>. You get a bundled demo library and the app never contacts a real Jellyfin server.
 
-### 3. Run it
+> **Requirements:** Node.js 22 or newer, and pnpm (`corepack enable` is the easiest way to get the pinned version).
+
+### 2. Connect your Jellyfin server
+
+You need a running Jellyfin server with a scanned library. If someone else administers it, ask them for the URL and an API key — you don't need their password.
+
+**a. Create an API key**
+
+1. In Jellyfin go to **Dashboard → Administration → API Keys** (on older versions, Administration is under **Advanced**).
+2. Click **+**, name it `JellyFin Atlas` and save.
+3. Copy the key.
+
+**b. Configure and run**
 
 ```bash
+cp .env.example .env
+# edit .env: set JELLYFIN_URL and JELLYFIN_API_KEY
 pnpm dev-remote
 ```
 
-Open <http://localhost:5143>. `pnpm dev-remote` uses your real Jellyfin server;
-`pnpm dev` uses the demo library. Both use port **5143**.
+Open <http://localhost:5143>. The dev server always uses port 5143: `pnpm dev` = demo data, `pnpm dev-remote` = your server.
 
-For a production build:
+**c. Production build**
 
 ```bash
 pnpm build
 pnpm start
 ```
 
-Open <http://localhost:3000> (change it with `PORT`, for example `PORT=8080 pnpm start`). `pnpm start` runs `node --env-file-if-exists=.env build`, so credentials are read at runtime: you can change the URL or API key and just restart the server.
+Open <http://localhost:3000> (change it with `PORT=8080 pnpm start`). Credentials are read at startup, so you can edit `.env` and restart — no rebuild needed.
 
-### Install with Docker
+### 3. Install with Docker
 
-Docker needs no clone and no build tools: the image bundles the app.
-
-**Option A — Docker Compose (recommended)**
+**Docker Compose (recommended)**
 
 ```bash
 git clone https://github.com/angelespejo/jellyfin-atlas.git
@@ -134,16 +115,7 @@ cp .env.example .env     # set JELLYFIN_URL and JELLYFIN_API_KEY
 docker compose up -d --build
 ```
 
-Open <http://localhost:3000>. Compose reads the credentials from `.env` and
-passes them to the container at runtime. To update after changing the code:
-
-```bash
-docker compose up -d --build
-```
-
-**Option B — prebuilt image from GitHub Container Registry**
-
-Images are published on version tags (Linux amd64/arm64):
+**Prebuilt image** (published on version tags, Linux amd64/arm64)
 
 ```bash
 docker run -d \
@@ -155,76 +127,53 @@ docker run -d \
   ghcr.io/angelespejo/jellyfin-atlas:latest
 ```
 
-Add `-e JELLYFIN_USER_ID=<id>` to use a specific user's watch state.
-
-**Try the demo in Docker** (no Jellyfin needed):
+**Demo inside Docker**
 
 ```bash
 docker run -d -p 3000:3000 -e JELLYFIN_MOCK=true ghcr.io/angelespejo/jellyfin-atlas:latest
 ```
 
-**Container notes**
+Two things that catch everyone out:
 
-- `localhost` **inside** the container is not your computer. Use the LAN IP of
-  the Jellyfin machine, or `http://host.docker.internal:8096` with
-  `--add-host=host.docker.internal:host-gateway` on Linux.
-- If Jellyfin runs as another Compose service, put both in the same network and
-  use the service name: `JELLYFIN_URL=http://jellyfin:8096`.
-- Health: `GET /api/health` reports the app version, whether it runs in demo
-  mode and whether Jellyfin is reachable. It is also the Docker healthcheck.
-- The container listens on `PORT` (default `3000`); map it with `-p`.
+- `localhost` inside the container is the container itself. Use the LAN IP of the Jellyfin machine, `http://host.docker.internal:8096`, or the Compose service name (`http://jellyfin:8096`).
+- The container listens on `PORT` (default `3000`); expose it with `-p`.
+
+`GET /api/health` reports the app version, demo mode and whether Jellyfin is reachable. It is also the container healthcheck.
 
 ## Configuration
 
-All variables live in `.env` (copy `.env.example` to start). `.env` is
-git-ignored. They are read at **runtime**: after changing one, restart the app
-(`node build`, `docker compose up -d` or the dev server) — no rebuild required.
+Copy `.env.example` to `.env` (git-ignored). Variables are read at **runtime**: change one and restart the app, no rebuild required.
 
 | Variable              | Required | Description                                                                                                                     |
 | --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `JELLYFIN_URL`        | Yes      | Base URL of your Jellyfin server, with port and **no trailing slash** (`http://192.168.1.10:8096`).                             |
+| `JELLYFIN_URL`        | Yes      | Jellyfin base URL with port and **no trailing slash** (`http://192.168.1.10:8096`).                                             |
 | `JELLYFIN_PUBLIC_URL` | No       | Browser-facing URL for “Watch in Jellyfin” links. Defaults to `JELLYFIN_URL`; set it when the server uses an internal hostname. |
 | `JELLYFIN_API_KEY`    | Yes      | API key created in Jellyfin. Grants full access to the server, so keep it secret.                                               |
-| `JELLYFIN_USER_ID`    | No       | User whose watched/favorite/continue-watching state is used. If omitted, the first user returned by Jellyfin is used.           |
-| `JELLYFIN_MOCK`       | No       | `true` serves the bundled demo library instead of Jellyfin. `pnpm dev` enables it automatically.                                |
-| `PORT`                | No       | Port for the production server (`node build` / Docker). Defaults to `3000`. Ignored by the dev server.                          |
+| `JELLYFIN_USER_ID`    | No       | User whose watched/favorite/continue-watching state is used. Defaults to the first user Jellyfin returns.                       |
+| `JELLYFIN_MOCK`       | No       | `true` serves the demo library instead of Jellyfin. `pnpm dev` enables it automatically.                                        |
+| `PORT`                | No       | Port for the production server. Defaults to `3000`. Ignored by the dev server.                                                  |
 
-The API key is only used by the server. It is never sent to the browser.
+The API key is used only by the server and never sent to the browser.
 
 ## Using the app
 
 ### Views
 
-Use the view switcher at the bottom of the left action rail, or the shortcuts
-below. The map stays loaded while you switch to another view. Each view has a
-picture in [Screenshots](#screenshots).
+Switch views from the bottom of the left action rail (the map stays loaded while you do). See [Screenshots](#screenshots) for each one.
 
-- **Chart** has two sub-tabs: **Bars** (countries) and **Timeline** (production
-  years). Clicking a timeline bar applies that year as a filter.
-- **Graph** uses a force layout for small libraries and a radial layout for
-  large ones, so it stays readable.
-- **Table** keeps the title column always visible; the rest can be toggled from
-  the column menu. Exports use the visible columns and the current sort/filter.
+- **Chart** has two sub-tabs: **Bars** (countries) and **Timeline** (years).
+- **Graph** uses a force layout for small libraries and a radial one for large ones, so it stays readable.
+- **Table** always shows the title column; the others are toggled from the column menu. Exports follow the visible columns and the current sort/filter.
 
 ### Search and filters
 
-Open the sidebar with the search button (`Ctrl/⌘ + K`) or the filters button.
-The **Results** tab searches titles; the **Filters** tab groups year, type,
-status, countries and directors. Active filters are listed in the bottom bar,
-which also shows how many movies, series and countries match.
+Open the sidebar with the search button (`Ctrl/⌘ + K`) or the filters button. **Results** searches titles; **Filters** groups year, type, status, countries and directors. The bottom bar lists active filters and how many movies, series and countries match.
 
-The country drawer and the person filmography have their own search boxes that
-only filter their lists (title, year and country). They never change the global
-filters.
-
-The current view, search, filters, table columns and the chart sub-tab are
-written to the URL. That makes any state reloadable and shareable with other
-people using the same instance.
+The country drawer and the person filmography have their own search boxes that only narrow that list — they never change the global filters.
 
 ### Keyboard shortcuts
 
-On macOS the modifiers are `⌘` and `⌥`; on Windows/Linux they are `Ctrl` and
-`Alt`. Shortcuts are ignored while you are typing in a field.
+`⌘`/`Ctrl` and `⌥`/`Alt` are grouped so the same key works on macOS and Windows/Linux. Shortcuts are ignored while typing in a field.
 
 | Action                            | Shortcut                      |
 | --------------------------------- | ----------------------------- |
@@ -240,163 +189,117 @@ On macOS the modifiers are `⌘` and `⌥`; on Windows/Linux they are `Ctrl` and
 
 ### Language and theme
 
-Open **Settings** (`Alt/⌥ + 2`) to choose the language (Automatic, English,
-Español) and the theme (System, Light, Dark). The app remembers both choices.
+**Settings** (`Alt/⌥ + 2`) switches language (Automatic, English, Español) and theme (System, Light, Dark). Both choices are remembered.
 
-When the demo library is active, the **About** dialog shows a _Demo data_
-badge, so screenshots are not confused with a real library.
+With the demo library, the **About** dialog shows a _Demo data_ badge so demo screenshots are never mistaken for a real library.
 
 ## Development
 
 ### Demo library
 
-`pnpm dev` runs Vite in `mock` mode: the app uses a snapshot of a real Jellyfin
-library that ships with the repo (`src/routes/api/_shared/mock/library.json`).
-No server, API key or internet connection is required. The demo data covers
-all views: countries, years, genres, ratings, cast, watch state, continue
-watching, posters and person portraits.
+`pnpm dev` runs Vite in mock mode with a snapshot of a real library (`src/routes/api/_shared/mock/library.json`). No server, key or internet needed: it covers countries, years, genres, ratings, cast, watch state and artwork.
 
-- Regenerate the snapshot from **your** server:
-  `pnpm mock:build` (reads `.env`, up to 200 movies + 50 series and all their
-  people; watch state is synthetic and no server URL is stored).
-- Posters/portraits are downloaded to `.dovenv/mock/images/` (git-ignored and
-  outside `static/`, so they never enter `pnpm build` or Docker). When they are
-  missing — CI, production, a fresh clone — the app draws generated SVG
-  artwork instead. Add `--no-images` to skip them, `--movies=100` to shrink the
-  snapshot.
-- Without a snapshot image the app draws deterministic SVG artwork locally.
-- In demo mode the UI never writes the library cache, so switching between
-  `pnpm dev` and `pnpm dev-remote` cannot mix real and demo data.
+- `pnpm mock:build` regenerates the snapshot from **your** server (up to 200 movies and 50 series; watch state is synthetic and no server URL is stored).
+- Posters and portraits go to `.dovenv/mock/images/` (git-ignored, outside `static/`, so they never reach `pnpm build` or Docker). Without them the app draws generated SVG artwork. Use `--no-images` or `--movies=100` to trim.
+- Demo mode never writes the library cache, so real and demo data can't mix.
 
-Use `pnpm dev-remote` when you want to work against your real Jellyfin server.
+Use `pnpm dev-remote` to work against your real server instead.
 
 ### Commands
 
 ```bash
-pnpm dev            # demo library, no Jellyfin needed (port 5143)
-pnpm dev-remote     # real Jellyfin server from .env (port 5143)
-pnpm mock:build     # regenerate the demo snapshot + images from .env
-pnpm check          # Svelte/TypeScript diagnostics
-pnpm lint           # oxlint
-pnpm format         # Prettier (also: pnpm format:check)
-pnpm test:e2e       # Playwright smoke tests against the demo library
-pnpm build          # production build
-pnpm start          # run the production build (loads .env)
-pnpm geo:build      # regenerate static/geo/* from the open datasets (needs network)
+pnpm dev             # demo library, no Jellyfin needed (port 5143)
+pnpm dev-remote      # real server from .env (port 5143)
+pnpm mock:build      # regenerate the demo snapshot + images from .env
+pnpm check           # Svelte/TypeScript diagnostics
+pnpm lint            # oxlint (also: pnpm lint:fix)
+pnpm format          # Prettier (also: pnpm format:check)
+pnpm test:e2e        # Playwright smoke tests against the demo library
+pnpm build           # production build
+pnpm start           # run the production build (loads .env)
+pnpm geo:build       # regenerate static/geo/* (needs network)
 pnpm countries:build # regenerate the compact client country index
 ```
 
-Run `pnpm exec prettier --write <path>` on the files you touch. Some pre-existing
-lint and formatting warnings may appear in untouched files; make sure your
-change does not add new ones.
+Run `pnpm exec prettier --write <path>` on the files you touch. The repo has some pre-existing lint and format warnings; just make sure your change adds none.
 
 ### Code guidelines
 
-- **TypeScript and Svelte only.** State that uses runes goes in `.svelte.ts`
-  files; styles use the CSS custom properties from `src/app.css` (Tailwind is
-  not installed).
-- Reuse the existing primitives in `src/lib/components/*`, `src/lib/ui/*` before adding new markup or one-off styles Form fields need an `id` or `name`.
-- Accessibility is part of done: real buttons/links, keyboard operable dialogs, translated `aria-label`s and `prefers-reduced-motion` for any animation.
-- Don't add a dependency for something that can be written by hand in a few lines; install one when it removes real complexity or verbosity, and never bypass the `pnpm audit` gate.
-- UI text goes through Paraglide/inlang: add the key to both `src/locales/en.json` and `src/locales/es.json`. Never edit the generated `.dovenv/i18n` folder.
+- **TypeScript and Svelte only.** Rune state lives in `.svelte.ts` files; styles use the CSS custom properties in `src/app.css` (no Tailwind).
+- Reuse the primitives in `src/lib/components/*` and `src/lib/ui/*` before adding new markup or one-off styles.
+- Accessibility is part of done: real buttons and links, keyboard-operable dialogs, translated `aria-label`s, `prefers-reduced-motion` for animations.
+- Don't add a dependency for a few lines you can write yourself, and never bypass the `pnpm audit` gate.
+- UI text goes through Paraglide: add the key to both `src/locales/en.json` and `src/locales/es.json`, never to the generated `.dovenv/i18n`.
 - Never render remote data with `{@html}`.
-- More architecture notes live in [`AGENTS.md`](./AGENTS.md).
+
+Full architecture notes: [`AGENTS.md`](./AGENTS.md).
 
 ## Data sources
 
-The map and the extra information come from open datasets. Please keep their
-attributions if you reuse or redistribute the assets.
+The map and the extra information come from open datasets. Keep their attributions if you reuse or redistribute the assets.
 
 - **OpenStreetMap** — base map tiles ([copyright](https://www.openstreetmap.org/copyright), ODbL).
 - **Natural Earth** — current country borders ([public domain](https://www.naturalearthdata.com/about/terms-of-use/)).
-- **historical-basemaps** — approximate historical borders
-  ([GPL-3.0](https://github.com/aourednik/historical-basemaps)).
+- **historical-basemaps** — approximate historical borders ([GPL-3.0](https://github.com/aourednik/historical-basemaps)).
 - **Wikidata** — filming locations and country facts (CC0).
 - **Wikipedia** — country descriptions and links (CC BY-SA).
 
-Your Jellyfin metadata stays on your server. Only country/city names and IDs are
-sent to Wikidata/Wikipedia, and no personal data or watch history is sent.
-
-The demo snapshot contains titles/people metadata from a real Jellyfin library,
-used only to develop this app. Its watch state is generated.
+Your Jellyfin metadata stays on your server. Only country/city names and IDs are sent to Wikidata/Wikipedia — never personal data or watch history.
 
 ## Troubleshooting
 
-**"Connection error" when the app loads**
+**The app shows a connection error**
 
-- Running `pnpm dev`? It never contacts Jellyfin. Use `pnpm dev-remote` (or `JELLYFIN_MOCK=false`) to read your server.
-- Check that `JELLYFIN_URL` is reachable from the machine running the app (`curl http://your-server:8096/System/Info/Public` should answer).
-- Check the API key. After editing `.env`, restart the process (`pnpm start` reads it at boot); the values are read at runtime.
-- Check `/api/health`: it tells you whether Jellyfin is configured/reachable.
-- If Jellyfin uses HTTPS with a self-signed certificate, the app may reject it until the certificate is trusted by the system.
-- In Docker, remember that `localhost` is the container itself.
+- Using `pnpm dev`? It never contacts Jellyfin — use `pnpm dev-remote`.
+- Check the server: `curl http://your-server:8096/System/Info/Public` should answer.
+- Re-check `JELLYFIN_URL` and `JELLYFIN_API_KEY`, then restart the process.
+- Check `/api/health` to see whether Jellyfin is configured and reachable.
+- A self-signed HTTPS certificate may be rejected until the system trusts it.
+- In Docker, `localhost` is the container itself.
 
 **The map is empty or countries are missing**
 
-JellyFin Atlas uses the production countries stored in Jellyfin metadata. Make
-sure your library has been scanned with a metadata provider that fills them in.
+Countries come from the production locations in Jellyfin metadata. Make sure your library was scanned with a metadata provider that fills them in.
 
 **Watch state looks wrong**
 
-Set `JELLYFIN_USER_ID` in `.env` and restart. Then reload data with
-`Alt/⌥ + L` or clear the local cache with `Alt/⌥ + Shift + L`. Demo data uses
-synthetic watch state and is never cached.
+Set `JELLYFIN_USER_ID` and restart. Then reload with `Alt/⌥ + L` or clear the cache with `Alt/⌥ + Shift + L`. Demo data uses synthetic watch state and is never cached.
 
 **Port already in use**
 
-- Development: port 5143 is fixed by the dev server.
-- Production: run `PORT=8080 pnpm start` (or change it in `.env` / Compose),
-  and map the same port with Docker.
+Port 5143 is fixed in development. For production run `PORT=8080 pnpm start` (or change it in `.env`/Compose) and map the same port in Docker.
 
-**Cities are missing for some titles**
+**Some titles have no filming cities**
 
-Filming locations come from Wikidata and coverage is partial. Country markers
-are always based on Jellyfin production-country metadata. The demo library uses
-a small offline city sample instead of querying Wikidata.
+Filming locations come from Wikidata and coverage is partial. Country markers always come from Jellyfin metadata; the demo uses a small offline city sample.
 
 ## Contributing
 
-Contributions, bug reports and ideas are welcome. This is a small project, so
-please open an issue before starting a large change — it avoids duplicated work
-and makes reviews easier.
+Contributions, bug reports and ideas are welcome. For a large change, open an issue first — it avoids duplicated work.
 
-1. **Report a bug**: include what you did, what you expected, what happened,
-   your Jellyfin version, and any relevant browser console or server logs.
-2. **Request a feature**: describe the problem you want to solve, not only the
-   solution, and add a mock-up if you have one.
-3. **Send a pull request**: fork the repository, create a branch, make the
-   change focused, and describe it in the PR.
-
-### Development setup
+- **Bug**: what you did, what you expected, what happened, your Jellyfin version and any console or server logs.
+- **Feature**: describe the problem you want to solve, not only the solution.
+- **Pull request**: fork, branch, keep the change focused and describe it in the PR.
 
 ```bash
 pnpm install
-pnpm dev               # demo library, no Jellyfin needed
-# or, to use your own server:
-cp .env.example .env   # fill in your Jellyfin URL and API key
+pnpm dev               # demo library
+# or, against your own server:
+cp .env.example .env   # fill in URL and API key
 pnpm dev-remote
 ```
 
-Continuous integration runs `pnpm check`, `pnpm build` and the Playwright smoke
-tests; the Docker image is published to GHCR on version tags.
-
-## Support the project
-
-If JellyFin Atlas is useful to you, you can support its development on
-[GitHub Sponsors](https://github.com/sponsors/angelespejo). Starring the
-repository and sharing it with other Jellyfin users also helps.
+CI runs `pnpm check`, `pnpm build` and the Playwright tests; the Docker image is published to GHCR on version tags.
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**.
+**GNU General Public License v3.0** — see [LICENSE](LICENSE).
 
 [![Read more](https://img.shields.io/badge/Read-more-green?style=for-the-badge)](LICENSE)
 
-## About us
+---
 
-PigeonPosse is a ✨ code development collective ✨ focused on creating practical and interesting tools that help developers and users enjoy a more agile and comfortable experience. Our projects cover various programming sectors and we do not have a thematic limitation in terms of projects.
-
-### Collaborators
+Made by **PigeonPosse**, a code collective building practical tools.
 
 | Name        | Role                         | GitHub                                         |
 | ----------- | ---------------------------- | ---------------------------------------------- |

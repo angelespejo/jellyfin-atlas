@@ -1,6 +1,6 @@
 services:
   jellyfin-atlas:
-    image: jellyfin-atlas:latest
+    image: ghcr.io/angelespejo/jellyfin-atlas:latest
     container_name: jellyfin-atlas
     restart: unless-stopped
     ports:
