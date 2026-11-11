@@ -1,7 +1,7 @@
 {
   "name": "jellyfin-atlas",
   "description": "Visually explore your Jellyfin media library on an interactive map. Each circle represents a production country and its size the amount of media.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@12.18.0",
