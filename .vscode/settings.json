@@ -40,6 +40,7 @@
 
   "json.schemaDownload.trustedDomains": {
     "https://models.dev/model-schema.json": true,
-    "https://opencode.ai/config.json": true
+    "https://opencode.ai/config.json": true,
+    "https://svelte.dev/opencode/schema.json": true
   }
 }
